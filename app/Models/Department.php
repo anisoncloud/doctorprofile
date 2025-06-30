@@ -8,8 +8,8 @@ use Illuminate\Database\Eloquent\Relations\HasMany;
 class Department extends Model
 {
     //
-    public function DoctorProfile(): HasMany
+    public function Doctor(): HasMany
     {
-        return $this->hasMany(DoctorProfile::class,'department_id', 'id');
+        return $this->hasMany(Doctor::class,'department_id', 'id');
     }
 }

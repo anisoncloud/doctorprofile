@@ -11,16 +11,16 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('doctor_profiles', function (Blueprint $table) {
+        Schema::create('doctors', function (Blueprint $table) {
             $table->id();
             $table->string('name');
-            $table->int('department_id');
+            //$table->integer('department_id')->unsigned();
             $table->string('phone')->nullable();
             $table->string('email')->unique();
             $table->text('biography')->nullable();
             $table->string('profile_picture')->nullable();
             $table->string('short_description')->nullable();
-            $table->foreign('department_id')->references('id')->on('departments')->onDelete('cascade');
+            $table->foreignId('department_id')->references('id')->on('departments')->onDelete('cascade');
             $table->timestamps();
         });
     }
@@ -30,6 +30,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('doctor_profiles');
+        Schema::dropIfExists('doctors');
     }
 };
