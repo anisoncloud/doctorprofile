@@ -14,12 +14,13 @@ return new class extends Migration
         Schema::create('doctor_profiles', function (Blueprint $table) {
             $table->id();
             $table->string('name');
-            $table->int('department');
+            $table->int('department_id');
             $table->string('phone')->nullable();
             $table->string('email')->unique();
             $table->text('biography')->nullable();
             $table->string('profile_picture')->nullable();
             $table->string('short_description')->nullable();
+            $table->foreign('department_id')->references('id')->on('departments')->onDelete('cascade');
             $table->timestamps();
         });
     }

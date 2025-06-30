@@ -10,7 +10,6 @@ class Department extends Model
     //
     public function DoctorProfile(): HasMany
     {
-        return $this->hasMany(DoctorProfile::class);
-
+        return $this->hasMany(DoctorProfile::class,'department_id', 'id');
     }
 }

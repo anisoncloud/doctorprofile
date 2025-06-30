@@ -10,6 +10,6 @@ class DoctorProfile extends Model
     //
     public function Department(): BelongsTo
     {
-        return $this->belongsTo(Department::class);
+        return $this->belongsTo(Department::class, 'department_id', 'id');
     }
 }
