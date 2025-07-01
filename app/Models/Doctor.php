@@ -11,10 +11,15 @@ class Doctor extends Model
     protected $fillable = [
         'name',
         'email',
-        'department_id'
+        'department_id',
+        'hospital_id'
     ];
     public function Department(): HasOne
     {
         return $this->hasOne(Department::class, 'id', 'department_id');
+    }
+    public function Hospital(): HasOne
+    {
+        return $this->hasOne(Hospital::class, 'id', 'hospital_id');
     }
 }

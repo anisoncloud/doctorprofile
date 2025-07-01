@@ -9,6 +9,15 @@
         <input type="text" class="form-control" id="name" name="name" required>
     </div>
     <div class="form-group">
+        <label for="hospital">Hospital Name</label>
+        <select name="hospital_id" id="">
+                <option value="">Select Hospital</option>
+                @foreach ($hospitals as $hospital)
+                <option value="{{ $hospital->id }}">{{ $hospital->name }}</option>
+                @endforeach
+            </select>
+    </div>
+    <div class="form-group">
         <label for="specialization">Specialization</label>
             <select name="department_id" id="">
                 <option value="">Select Department</option>

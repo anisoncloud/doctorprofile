@@ -7,6 +7,13 @@
     <title>Document</title>
 </head>
 <body>
+    <nav>
+        <ul>
+            <li><a href="{{ route('hospital.index') }}">Hospitals</a></li>
+            <li><a href="{{ route('department.index') }}">Departments</a></li>
+            <li><a href="{{ route('doctor.index') }}">Doctors</a></li>
+        </ul>
+    </nav>
     @yield('content')
 </body>
 </html>
