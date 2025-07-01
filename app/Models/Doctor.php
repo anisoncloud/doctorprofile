@@ -8,8 +8,13 @@ use Illuminate\Database\Eloquent\Relations\HasOne;
 class Doctor extends Model
 {
     //
+    protected $fillable = [
+        'name',
+        'email',
+        'department_id'
+    ];
     public function Department(): HasOne
     {
-        return $this->hasOne(Doctor::class, 'department_id', 'id');
+        return $this->hasOne(Department::class, 'id', 'department_id');
     }
 }

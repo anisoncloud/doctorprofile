@@ -3,17 +3,19 @@
 namespace App\Http\Controllers;
 
 use App\Models\Department;
+use App\Models\Doctor;
 use Illuminate\Http\Request;
 
-class DepartmentController extends Controller
+class DoctorController extends Controller
 {
     /**
      * Display a listing of the resource.
      */
     public function index()
     {
-        return view('back.department.index', [
-            'departments' => Department::all(),
+        //
+        return view('back.doctor.index', [
+            'doctors' => Doctor::with('department')->get(),
         ]);
     }
 
@@ -22,7 +24,8 @@ class DepartmentController extends Controller
      */
     public function create()
     {
-        return view('back.department.create', [
+        //
+        return view('back.doctor.create', [
             'departments' => Department::all(),
         ]);
     }
@@ -32,16 +35,18 @@ class DepartmentController extends Controller
      */
     public function store(Request $request)
     {
-        //
         $request->validate([
-            'department_name' => 'required|string|max:255',
-            'description' => 'nullable|string|max:1000',
+            'name' => 'required|string|max:255',
+            'email' => 'required|email|unique:doctors,email',
+            'department_id' => 'required|exists:departments,id'
         ]);
-        Department::create([
-            'department_name' => $request->department_name,
-            'description' => $request->description,
+        //dd($request->all());
+        Doctor::create([
+            'name' => $request->name,
+            'email' => $request->email,
+            'department_id' => $request->department_id
         ]);
-        return redirect()->route('department.index')->with('success', 'Department created successfully.');
+        return redirect()->route('doctor.index')->with('success', 'Doctor created successfully.');
     }
 
     /**
