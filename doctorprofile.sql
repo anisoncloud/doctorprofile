@@ -1,132 +1,191 @@
--- --------------------------------------------------------
--- Host:                         127.0.0.1
--- Server version:               8.0.30 - MySQL Community Server - GPL
--- Server OS:                    Win64
--- HeidiSQL Version:             12.1.0.6537
--- --------------------------------------------------------
+-- phpMyAdmin SQL Dump
+-- version 5.2.0
+-- https://www.phpmyadmin.net/
+--
+-- Host: 127.0.0.1
+-- Generation Time: Jul 02, 2025 at 11:28 AM
+-- Server version: 8.0.30
+-- PHP Version: 8.2.28
+
+SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
+START TRANSACTION;
+SET time_zone = "+00:00";
+
 
 /*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
-/*!40101 SET NAMES utf8 */;
-/*!50503 SET NAMES utf8mb4 */;
-/*!40103 SET @OLD_TIME_ZONE=@@TIME_ZONE */;
-/*!40103 SET TIME_ZONE='+00:00' */;
-/*!40014 SET @OLD_FOREIGN_KEY_CHECKS=@@FOREIGN_KEY_CHECKS, FOREIGN_KEY_CHECKS=0 */;
-/*!40101 SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='NO_AUTO_VALUE_ON_ZERO' */;
-/*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
+/*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
+/*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
+/*!40101 SET NAMES utf8mb4 */;
 
--- Dumping structure for table docprofile.cache
-CREATE TABLE IF NOT EXISTS `cache` (
+--
+-- Database: `docprofile`
+--
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `cache`
+--
+
+CREATE TABLE `cache` (
   `key` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `value` mediumtext COLLATE utf8mb4_unicode_ci NOT NULL,
-  `expiration` int NOT NULL,
-  PRIMARY KEY (`key`)
+  `expiration` int NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
--- Dumping data for table docprofile.cache: ~0 rows (approximately)
+-- --------------------------------------------------------
 
--- Dumping structure for table docprofile.cache_locks
-CREATE TABLE IF NOT EXISTS `cache_locks` (
+--
+-- Table structure for table `cache_locks`
+--
+
+CREATE TABLE `cache_locks` (
   `key` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `owner` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `expiration` int NOT NULL,
-  PRIMARY KEY (`key`)
+  `expiration` int NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
--- Dumping data for table docprofile.cache_locks: ~0 rows (approximately)
+-- --------------------------------------------------------
 
--- Dumping structure for table docprofile.departments
-CREATE TABLE IF NOT EXISTS `departments` (
-  `id` bigint unsigned NOT NULL AUTO_INCREMENT,
+--
+-- Table structure for table `departments`
+--
+
+CREATE TABLE `departments` (
+  `id` bigint UNSIGNED NOT NULL,
   `department_name` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `description` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
-  `updated_at` timestamp NULL DEFAULT NULL,
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+  `updated_at` timestamp NULL DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
--- Dumping data for table docprofile.departments: ~5 rows (approximately)
+--
+-- Dumping data for table `departments`
+--
+
 INSERT INTO `departments` (`id`, `department_name`, `description`, `created_at`, `updated_at`) VALUES
-	(1, 'Accident And Emergency', 'Accident And Emergency', '2025-07-01 08:07:37', '2025-07-01 08:07:37'),
-	(2, 'Anaesthesiology', 'Anaesthesiology', '2025-07-01 08:07:57', '2025-07-01 08:07:57'),
-	(3, 'Burn & Plastic Surgery', 'Burn & Plastic Surgery', '2025-07-01 08:08:20', '2025-07-01 08:08:20'),
-	(4, 'Cardiac Surgery', 'Cardiac Surgery', '2025-07-01 08:08:42', '2025-07-01 08:08:42'),
-	(5, 'Cardiothoracic And Vascular Surgery', 'Cardiothoracic And Vascular Surgery', '2025-07-01 08:08:59', '2025-07-01 08:08:59');
+(1, 'Chest Diseases & Medicine', 'Chest Diseases & Medicine', '2025-07-02 01:36:01', '2025-07-02 01:36:01'),
+(2, 'Cardiology', 'Cardiology', '2025-07-02 01:36:25', '2025-07-02 01:36:25'),
+(3, 'Cardiovascular & Thoracic Surgery', 'Cardiovascular & Thoracic Surgery', '2025-07-02 01:36:43', '2025-07-02 01:36:43'),
+(4, 'Endocrinology & Metabolism', 'Endocrinology & Metabolism', '2025-07-02 01:37:04', '2025-07-02 01:37:04'),
+(5, 'Gastroenterology', 'Gastroenterology', '2025-07-02 01:37:21', '2025-07-02 01:37:21');
 
--- Dumping structure for table docprofile.doctors
-CREATE TABLE IF NOT EXISTS `doctors` (
-  `id` bigint unsigned NOT NULL AUTO_INCREMENT,
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `doctors`
+--
+
+CREATE TABLE `doctors` (
+  `id` bigint UNSIGNED NOT NULL,
   `name` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `phone` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `email` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `biography` text COLLATE utf8mb4_unicode_ci,
   `profile_picture` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `short_description` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `department_id` bigint unsigned NOT NULL,
+  `department_id` bigint UNSIGNED NOT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL,
   `speciality` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `designation` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `hospital_id` int unsigned DEFAULT NULL,
-  PRIMARY KEY (`id`),
-  UNIQUE KEY `doctors_email_unique` (`email`),
-  KEY `doctors_department_id_foreign` (`department_id`),
-  CONSTRAINT `doctors_department_id_foreign` FOREIGN KEY (`department_id`) REFERENCES `departments` (`id`) ON DELETE CASCADE
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+  `hospital_id` int UNSIGNED DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
--- Dumping data for table docprofile.doctors: ~1 rows (approximately)
+--
+-- Dumping data for table `doctors`
+--
+
 INSERT INTO `doctors` (`id`, `name`, `phone`, `email`, `biography`, `profile_picture`, `short_description`, `department_id`, `created_at`, `updated_at`, `speciality`, `designation`, `hospital_id`) VALUES
-	(1, 'Anisur Rahman', NULL, 'anis.bdinfo@gmail.com', NULL, NULL, NULL, 1, '2025-07-01 11:07:34', '2025-07-01 11:07:34', NULL, NULL, 1),
-	(2, 'Abdul Kuddus', NULL, 'sample@sample.com', NULL, NULL, NULL, 2, '2025-07-01 11:12:15', '2025-07-01 11:12:15', NULL, NULL, 2);
+(1, 'Prof. Dr. Muhammad Abdullahel Kafi', NULL, 'kafi@gmail.com', NULL, NULL, NULL, 5, '2025-07-02 02:49:19', '2025-07-02 02:49:19', NULL, NULL, 1),
+(2, 'Dr. Ferdous Ara Banu Kakoli', NULL, 'ara@gmail.com', NULL, NULL, NULL, 3, '2025-07-02 02:50:18', '2025-07-02 02:50:18', NULL, NULL, 2),
+(3, 'Dr. Taslima Begum', NULL, 'taslima@gmail.com', NULL, NULL, NULL, 1, '2025-07-02 02:51:15', '2025-07-02 02:51:15', NULL, NULL, 3);
 
--- Dumping structure for table docprofile.failed_jobs
-CREATE TABLE IF NOT EXISTS `failed_jobs` (
-  `id` bigint unsigned NOT NULL AUTO_INCREMENT,
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `doctor_schedules`
+--
+
+CREATE TABLE `doctor_schedules` (
+  `id` bigint UNSIGNED NOT NULL,
+  `doctor_id` bigint UNSIGNED NOT NULL,
+  `sunday` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `monday` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `tuesday` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `wednesday` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `thursday` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `friday` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `saturday` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `failed_jobs`
+--
+
+CREATE TABLE `failed_jobs` (
+  `id` bigint UNSIGNED NOT NULL,
   `uuid` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `connection` text COLLATE utf8mb4_unicode_ci NOT NULL,
   `queue` text COLLATE utf8mb4_unicode_ci NOT NULL,
   `payload` longtext COLLATE utf8mb4_unicode_ci NOT NULL,
   `exception` longtext COLLATE utf8mb4_unicode_ci NOT NULL,
-  `failed_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
-  PRIMARY KEY (`id`),
-  UNIQUE KEY `failed_jobs_uuid_unique` (`uuid`)
+  `failed_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
--- Dumping data for table docprofile.failed_jobs: ~0 rows (approximately)
+-- --------------------------------------------------------
 
--- Dumping structure for table docprofile.hospitals
-CREATE TABLE IF NOT EXISTS `hospitals` (
-  `id` bigint unsigned NOT NULL AUTO_INCREMENT,
+--
+-- Table structure for table `hospitals`
+--
+
+CREATE TABLE `hospitals` (
+  `id` bigint UNSIGNED NOT NULL,
   `name` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `description` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `address` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
-  `updated_at` timestamp NULL DEFAULT NULL,
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
-
--- Dumping data for table docprofile.hospitals: ~3 rows (approximately)
-INSERT INTO `hospitals` (`id`, `name`, `description`, `address`, `created_at`, `updated_at`) VALUES
-	(1, 'Dhaka Medical College and Hospital', NULL, 'Dhaka', '2025-07-01 10:28:47', '2025-07-01 10:28:47'),
-	(2, 'Shaheed Suhrawardy Medical College & Hospital', NULL, 'Dhaka', '2025-07-01 10:29:17', '2025-07-01 10:29:17'),
-	(3, 'Bangabandhu Sheikh Mujib Medical University Hospital', NULL, 'Dhaka', '2025-07-01 10:29:43', '2025-07-01 10:29:43');
-
--- Dumping structure for table docprofile.jobs
-CREATE TABLE IF NOT EXISTS `jobs` (
-  `id` bigint unsigned NOT NULL AUTO_INCREMENT,
-  `queue` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `payload` longtext COLLATE utf8mb4_unicode_ci NOT NULL,
-  `attempts` tinyint unsigned NOT NULL,
-  `reserved_at` int unsigned DEFAULT NULL,
-  `available_at` int unsigned NOT NULL,
-  `created_at` int unsigned NOT NULL,
-  PRIMARY KEY (`id`),
-  KEY `jobs_queue_index` (`queue`)
+  `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
--- Dumping data for table docprofile.jobs: ~0 rows (approximately)
+--
+-- Dumping data for table `hospitals`
+--
 
--- Dumping structure for table docprofile.job_batches
-CREATE TABLE IF NOT EXISTS `job_batches` (
+INSERT INTO `hospitals` (`id`, `name`, `description`, `address`, `created_at`, `updated_at`) VALUES
+(1, 'Enam Medical College & Hospital', NULL, 'Enam Medical College & Hospital', '2025-07-02 01:30:39', '2025-07-02 01:30:39'),
+(2, 'National Institute of Cardiovascular Diseases & Hospital', NULL, 'National Institute of Cardiovascular Diseases & Hospital', '2025-07-02 01:30:57', '2025-07-02 01:30:57'),
+(3, 'Bangabandhu Sheikh Mujib Medical University Hospital', NULL, 'Bangabandhu Sheikh Mujib Medical University Hospital', '2025-07-02 01:31:12', '2025-07-02 01:31:12'),
+(4, 'Ad-din Womens Medical College & Hospital', NULL, 'Ad-din Womens Medical College & Hospital', '2025-07-02 01:31:29', '2025-07-02 01:31:29'),
+(5, 'Dhaka Medical College & Hospital', NULL, 'Dhaka Medical College & Hospital', '2025-07-02 01:32:11', '2025-07-02 01:32:11');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `jobs`
+--
+
+CREATE TABLE `jobs` (
+  `id` bigint UNSIGNED NOT NULL,
+  `queue` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `payload` longtext COLLATE utf8mb4_unicode_ci NOT NULL,
+  `attempts` tinyint UNSIGNED NOT NULL,
+  `reserved_at` int UNSIGNED DEFAULT NULL,
+  `available_at` int UNSIGNED NOT NULL,
+  `created_at` int UNSIGNED NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `job_batches`
+--
+
+CREATE TABLE `job_batches` (
   `id` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `name` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `total_jobs` int NOT NULL,
@@ -136,76 +195,245 @@ CREATE TABLE IF NOT EXISTS `job_batches` (
   `options` mediumtext COLLATE utf8mb4_unicode_ci,
   `cancelled_at` int DEFAULT NULL,
   `created_at` int NOT NULL,
-  `finished_at` int DEFAULT NULL,
-  PRIMARY KEY (`id`)
+  `finished_at` int DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
--- Dumping data for table docprofile.job_batches: ~0 rows (approximately)
+-- --------------------------------------------------------
 
--- Dumping structure for table docprofile.migrations
-CREATE TABLE IF NOT EXISTS `migrations` (
-  `id` int unsigned NOT NULL AUTO_INCREMENT,
+--
+-- Table structure for table `migrations`
+--
+
+CREATE TABLE `migrations` (
+  `id` int UNSIGNED NOT NULL,
   `migration` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `batch` int NOT NULL,
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=18 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+  `batch` int NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
--- Dumping data for table docprofile.migrations: ~6 rows (approximately)
+--
+-- Dumping data for table `migrations`
+--
+
 INSERT INTO `migrations` (`id`, `migration`, `batch`) VALUES
-	(1, '0001_01_01_000000_create_users_table', 1),
-	(2, '0001_01_01_000001_create_cache_table', 1),
-	(3, '0001_01_01_000002_create_jobs_table', 1),
-	(6, '2025_06_29_175546_create_departments_table', 2),
-	(11, '2025_07_01_142953_create_hospitals_table', 5),
-	(16, '2025_06_30_154138_create_doctors_table', 6),
-	(17, '2025_07_01_141612_add_column_doctors_table', 6);
+(1, '0001_01_01_000000_create_users_table', 1),
+(2, '0001_01_01_000001_create_cache_table', 1),
+(3, '0001_01_01_000002_create_jobs_table', 1),
+(4, '2025_06_29_175546_create_departments_table', 1),
+(5, '2025_06_30_154138_create_doctors_table', 1),
+(6, '2025_07_01_141612_add_column_doctors_table', 1),
+(7, '2025_07_01_142953_create_hospitals_table', 1),
+(8, '2025_07_02_094600_create_doctor_schedules_table', 2);
 
--- Dumping structure for table docprofile.password_reset_tokens
-CREATE TABLE IF NOT EXISTS `password_reset_tokens` (
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `password_reset_tokens`
+--
+
+CREATE TABLE `password_reset_tokens` (
   `email` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `token` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `created_at` timestamp NULL DEFAULT NULL,
-  PRIMARY KEY (`email`)
+  `created_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
--- Dumping data for table docprofile.password_reset_tokens: ~0 rows (approximately)
+-- --------------------------------------------------------
 
--- Dumping structure for table docprofile.sessions
-CREATE TABLE IF NOT EXISTS `sessions` (
+--
+-- Table structure for table `sessions`
+--
+
+CREATE TABLE `sessions` (
   `id` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `user_id` bigint unsigned DEFAULT NULL,
+  `user_id` bigint UNSIGNED DEFAULT NULL,
   `ip_address` varchar(45) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `user_agent` text COLLATE utf8mb4_unicode_ci,
   `payload` longtext COLLATE utf8mb4_unicode_ci NOT NULL,
-  `last_activity` int NOT NULL,
-  PRIMARY KEY (`id`),
-  KEY `sessions_user_id_index` (`user_id`),
-  KEY `sessions_last_activity_index` (`last_activity`)
+  `last_activity` int NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
--- Dumping data for table docprofile.sessions: ~1 rows (approximately)
-INSERT INTO `sessions` (`id`, `user_id`, `ip_address`, `user_agent`, `payload`, `last_activity`) VALUES
-	('CFwNvbPEqFgHLhxkUy3M0439DVWrzMd5CPJMJ7W4', NULL, '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/137.0.0.0 Safari/537.36', 'YTozOntzOjY6Il90b2tlbiI7czo0MDoibkZnbGV0VElubDJ0R1hjMUNUWFNQM0F4Wk1ncGxEVjJjbHdSNVNDdSI7czo5OiJfcHJldmlvdXMiO2E6MTp7czozOiJ1cmwiO3M6MzA6Imh0dHA6Ly8xMjcuMC4wLjE6ODAwMC9ob3NwaXRhbCI7fXM6NjoiX2ZsYXNoIjthOjI6e3M6Mzoib2xkIjthOjA6e31zOjM6Im5ldyI7YTowOnt9fX0=', 1751389947),
-	('g4iYXHtQpvaw7MfdwHqKAqUqGbdJPw8aIUUPhLCz', NULL, '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/137.0.0.0 Safari/537.36', 'YTozOntzOjY6Il90b2tlbiI7czo0MDoiemNJcDdPTVl1N0J5MU9xRllmTjE4aDlOQkFwWnZpaEU5TG93WmVIWiI7czo5OiJfcHJldmlvdXMiO2E6MTp7czozOiJ1cmwiO3M6MzI6Imh0dHA6Ly8xMjcuMC4wLjE6ODAwMC9kZXBhcnRtZW50Ijt9czo2OiJfZmxhc2giO2E6Mjp7czozOiJvbGQiO2E6MDp7fXM6MzoibmV3IjthOjA6e319fQ==', 1751378940);
+--
+-- Dumping data for table `sessions`
+--
 
--- Dumping structure for table docprofile.users
-CREATE TABLE IF NOT EXISTS `users` (
-  `id` bigint unsigned NOT NULL AUTO_INCREMENT,
+INSERT INTO `sessions` (`id`, `user_id`, `ip_address`, `user_agent`, `payload`, `last_activity`) VALUES
+('V74f7XRXkdlD8c5hOQVdBuGzrr4Ybs5unZAeX91v', NULL, '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/137.0.0.0 Safari/537.36', 'YTozOntzOjY6Il90b2tlbiI7czo0MDoiRVBLUDg0ZGZmcER1aVRZdU1lZ2Zsdms5ZWdSN1d6SktYZmxLcDdiVyI7czo5OiJfcHJldmlvdXMiO2E6MTp7czozOiJ1cmwiO3M6MzU6Imh0dHA6Ly8xMjcuMC4wLjE6ODAwMC9kb2N0b3IvY3JlYXRlIjt9czo2OiJfZmxhc2giO2E6Mjp7czozOiJvbGQiO2E6MDp7fXM6MzoibmV3IjthOjA6e319fQ==', 1751455584);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `users`
+--
+
+CREATE TABLE `users` (
+  `id` bigint UNSIGNED NOT NULL,
   `name` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `email` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `email_verified_at` timestamp NULL DEFAULT NULL,
   `password` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `remember_token` varchar(100) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
-  `updated_at` timestamp NULL DEFAULT NULL,
-  PRIMARY KEY (`id`),
-  UNIQUE KEY `users_email_unique` (`email`)
+  `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
--- Dumping data for table docprofile.users: ~0 rows (approximately)
+--
+-- Indexes for dumped tables
+--
 
-/*!40103 SET TIME_ZONE=IFNULL(@OLD_TIME_ZONE, 'system') */;
-/*!40101 SET SQL_MODE=IFNULL(@OLD_SQL_MODE, '') */;
-/*!40014 SET FOREIGN_KEY_CHECKS=IFNULL(@OLD_FOREIGN_KEY_CHECKS, 1) */;
+--
+-- Indexes for table `cache`
+--
+ALTER TABLE `cache`
+  ADD PRIMARY KEY (`key`);
+
+--
+-- Indexes for table `cache_locks`
+--
+ALTER TABLE `cache_locks`
+  ADD PRIMARY KEY (`key`);
+
+--
+-- Indexes for table `departments`
+--
+ALTER TABLE `departments`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `doctors`
+--
+ALTER TABLE `doctors`
+  ADD PRIMARY KEY (`id`),
+  ADD UNIQUE KEY `doctors_email_unique` (`email`),
+  ADD KEY `doctors_department_id_foreign` (`department_id`);
+
+--
+-- Indexes for table `doctor_schedules`
+--
+ALTER TABLE `doctor_schedules`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `doctor_schedules_doctor_id_foreign` (`doctor_id`);
+
+--
+-- Indexes for table `failed_jobs`
+--
+ALTER TABLE `failed_jobs`
+  ADD PRIMARY KEY (`id`),
+  ADD UNIQUE KEY `failed_jobs_uuid_unique` (`uuid`);
+
+--
+-- Indexes for table `hospitals`
+--
+ALTER TABLE `hospitals`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `jobs`
+--
+ALTER TABLE `jobs`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `jobs_queue_index` (`queue`);
+
+--
+-- Indexes for table `job_batches`
+--
+ALTER TABLE `job_batches`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `migrations`
+--
+ALTER TABLE `migrations`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `password_reset_tokens`
+--
+ALTER TABLE `password_reset_tokens`
+  ADD PRIMARY KEY (`email`);
+
+--
+-- Indexes for table `sessions`
+--
+ALTER TABLE `sessions`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `sessions_user_id_index` (`user_id`),
+  ADD KEY `sessions_last_activity_index` (`last_activity`);
+
+--
+-- Indexes for table `users`
+--
+ALTER TABLE `users`
+  ADD PRIMARY KEY (`id`),
+  ADD UNIQUE KEY `users_email_unique` (`email`);
+
+--
+-- AUTO_INCREMENT for dumped tables
+--
+
+--
+-- AUTO_INCREMENT for table `departments`
+--
+ALTER TABLE `departments`
+  MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+
+--
+-- AUTO_INCREMENT for table `doctors`
+--
+ALTER TABLE `doctors`
+  MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+
+--
+-- AUTO_INCREMENT for table `doctor_schedules`
+--
+ALTER TABLE `doctor_schedules`
+  MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT for table `failed_jobs`
+--
+ALTER TABLE `failed_jobs`
+  MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT for table `hospitals`
+--
+ALTER TABLE `hospitals`
+  MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+
+--
+-- AUTO_INCREMENT for table `jobs`
+--
+ALTER TABLE `jobs`
+  MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT for table `migrations`
+--
+ALTER TABLE `migrations`
+  MODIFY `id` int UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+
+--
+-- AUTO_INCREMENT for table `users`
+--
+ALTER TABLE `users`
+  MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT;
+
+--
+-- Constraints for dumped tables
+--
+
+--
+-- Constraints for table `doctors`
+--
+ALTER TABLE `doctors`
+  ADD CONSTRAINT `doctors_department_id_foreign` FOREIGN KEY (`department_id`) REFERENCES `departments` (`id`) ON DELETE CASCADE;
+
+--
+-- Constraints for table `doctor_schedules`
+--
+ALTER TABLE `doctor_schedules`
+  ADD CONSTRAINT `doctor_schedules_doctor_id_foreign` FOREIGN KEY (`doctor_id`) REFERENCES `doctors` (`id`) ON DELETE CASCADE;
+COMMIT;
+
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
-/*!40111 SET SQL_NOTES=IFNULL(@OLD_SQL_NOTES, 1) */;
+/*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
+/*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;

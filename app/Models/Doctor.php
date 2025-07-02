@@ -3,6 +3,7 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\HasOne;
 
 class Doctor extends Model
@@ -14,12 +15,16 @@ class Doctor extends Model
         'department_id',
         'hospital_id'
     ];
-    public function Department(): HasOne
+    public function department(): BelongsTo
     {
-        return $this->hasOne(Department::class, 'id', 'department_id');
+        return $this->belongsTo(Department::class, 'department_id', 'id');
     }
-    public function Hospital(): HasOne
+    public function hospital(): BelongsTo
     {
-        return $this->hasOne(Hospital::class, 'id', 'hospital_id');
+        return $this->belongsTo(Hospital::class, 'hospital_id', 'id');
+    }
+    public function DoctorSchedule(): BelongsTo
+    {
+        return $this->belongsTo(DoctorSchedule::class, 'doctor_id', 'id');
     }
 }
