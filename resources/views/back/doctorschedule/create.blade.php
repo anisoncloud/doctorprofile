@@ -2,9 +2,13 @@
 @section('content')
 <h1>{{$doctor->name}}</h1>
 <hr>
-<form method="POST" action="{{ route('doctor.store', $doctor->id) }}" enctype="multipart/form-data">
-    @csrf
 
+
+
+
+
+<form method="POST" action="{{ route('doctorschedule.storeSchedule', $doctor->id) }}" enctype="multipart/form-data">
+    @csrf
 <div class="form-group">
         <label for="email">Doctor Schedule</label>
         @foreach(['Saturday','Sunday', 'Monday','Tuesday','Wednesday','Thursday','Friday'] as $day)
@@ -16,7 +20,6 @@
         @endforeach
 </div>
     <button type="submit" class="btn btn-primary">Create Doctor</button>
-
 </form>
 
 @endsection

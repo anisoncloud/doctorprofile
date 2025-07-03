@@ -13,9 +13,7 @@ use Illuminate\Support\Facades\Route;
 Route::resource('department', DepartmentController::class);
 Route::resource('doctor', DoctorController::class);
 Route::resource('hospital', HospitalControllar::class);
-Route::resource('doctorschedule', DoctorScheduleController::class, [
-    'parameters' => [
-        'doctorschedule' => 'doctorId'
-    ]
-]);
+Route::resource('doctorschedule', DoctorScheduleController::class);
+Route::get('doctorschedule/createSchedule/{doctorId}', [DoctorScheduleController::class, 'createSchedule'])->name('doctorschedule.createSchedule');
+Route::post('doctorschedule/storeSchedule/{doctorId}', [DoctorScheduleController::class, 'storeSchedule'])->name('doctorschedule.storeSchedule');
 

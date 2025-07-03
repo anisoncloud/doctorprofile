@@ -19,7 +19,12 @@ class DoctorScheduleController extends Controller
     /**
      * Show the form for creating a new resource.
      */
-    public function create(Request $doctorId)
+    public function create()
+    {
+        //
+    }
+
+    public function createSchedule($doctorId)
     {
         $doctor = Doctor::findOrFail($doctorId);
         return view('back.doctorschedule.create', compact('doctor'));
@@ -28,8 +33,13 @@ class DoctorScheduleController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request, $doctorId)
+    public function store(Request $request)
     {
+        //
+    }
+    public function storeSchedule(Request $request, $doctorId)
+    {
+        //dd($request->all(), $doctorId);
         $doctor = Doctor::findOrFail($doctorId);
 
     $days = ['Monday','Tuesday','Wednesday','Thursday','Friday','Saturday','Sunday'];
