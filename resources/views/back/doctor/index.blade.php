@@ -27,6 +27,7 @@
             <td>{{ $doctor->department ? $doctor->department->department_name : 'N/A' }}</td>
             <td>
                 <a href="{{ route('doctor.edit', $doctor->id) }}" class="btn btn-warning">Edit</a>
+                <a href="{{ route('doctorschedule.create', ['doctorId'=>$doctor->id]) }}" class="btn btn-warning">Make Schedule</a>
                 <form action="{{ route('doctor.destroy', $doctor->id) }}" method="POST" style="display:inline;">
                     @csrf
                     @method('DELETE')
