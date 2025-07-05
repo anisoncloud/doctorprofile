@@ -16,4 +16,6 @@ Route::resource('hospital', HospitalControllar::class);
 Route::resource('doctorschedule', DoctorScheduleController::class);
 Route::get('doctorschedule/createSchedule/{doctorId}', [DoctorScheduleController::class, 'createSchedule'])->name('doctorschedule.createSchedule');
 Route::post('doctorschedule/storeSchedule/{doctorId}', [DoctorScheduleController::class, 'storeSchedule'])->name('doctorschedule.storeSchedule');
+Route::get('doctorschedule/eidtSchedule/{doctorId}', [DoctorScheduleController::class, 'editSchedule'])->name('doctorschedule.editSchedule');
+Route::put('doctorschedule/updateSchedule/{doctorId}', [DoctorScheduleController::class, 'updateSchedule'])->name('doctorschedule.updateSchedule');
 

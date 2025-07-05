@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost
--- Generation Time: Jul 03, 2025 at 06:59 PM
+-- Generation Time: Jul 05, 2025 at 07:05 PM
 -- Server version: 8.0.30
 -- PHP Version: 8.4.6
 
@@ -146,9 +146,8 @@ INSERT INTO `doctor_weekly_schedules` (`id`, `doctor_id`, `day_of_week`, `start_
 (2, 1, 'Tuesday', '02:34:00', '05:37:00', '2025-07-03 12:57:03', '2025-07-03 12:57:03'),
 (3, 1, 'Wednesday', '06:38:00', '04:36:00', '2025-07-03 12:57:03', '2025-07-03 12:57:03'),
 (4, 1, 'Thursday', '16:36:00', '14:34:00', '2025-07-03 12:57:03', '2025-07-03 12:57:03'),
-(5, 1, 'Friday', '14:34:00', '14:34:00', '2025-07-03 12:57:03', '2025-07-03 12:57:03'),
-(6, 1, 'Saturday', '00:20:00', '12:21:00', '2025-07-03 12:57:03', '2025-07-03 12:57:03'),
-(7, 1, 'Sunday', '00:31:00', '14:33:00', '2025-07-03 12:57:03', '2025-07-03 12:57:03');
+(7, 1, 'Sunday', '00:31:00', '14:33:00', '2025-07-03 12:57:03', '2025-07-03 12:57:03'),
+(8, 2, 'Saturday', '07:00:00', '00:00:00', '2025-07-05 11:14:51', '2025-07-05 11:16:11');
 
 -- --------------------------------------------------------
 
@@ -286,7 +285,10 @@ CREATE TABLE `sessions` (
 --
 
 INSERT INTO `sessions` (`id`, `user_id`, `ip_address`, `user_agent`, `payload`, `last_activity`) VALUES
-('G0DilchGm8cd8xltWX8D5OmLBVBp1LfNmbIc0pLt', NULL, '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/137.0.0.0 Safari/537.36', 'YTozOntzOjY6Il90b2tlbiI7czo0MDoiQUJNZGlUSVZPeVhuNWQxcENLcTJnWVM2c2hwc2pMSW51TTlpeE5wVSI7czo5OiJfcHJldmlvdXMiO2E6MTp7czozOiJ1cmwiO3M6Nzk6Imh0dHA6Ly8xMjcuMC4wLjE6ODA4Mi9hbmlzL2RvY3RvcnByb2ZpbGUvcHVibGljL2RvY3RvcnNjaGVkdWxlL2NyZWF0ZVNjaGVkdWxlLzEiO31zOjY6Il9mbGFzaCI7YToyOntzOjM6Im9sZCI7YTowOnt9czozOiJuZXciO2E6MDp7fX19', 1751569023);
+('aELHthcYQWS84309yF4kx48L5fnRNZwGbBF747Za', NULL, '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:140.0) Gecko/20100101 Firefox/140.0', 'YTozOntzOjY6Il90b2tlbiI7czo0MDoieVNnemlaMWNKNUZqZ3pnQ3BTWUtmS3RISHRIdW4yd01EWWtKdVJleSI7czo5OiJfcHJldmlvdXMiO2E6MTp7czozOiJ1cmwiO3M6Nzk6Imh0dHA6Ly8xMjcuMC4wLjE6ODA4Mi9hbmlzL2RvY3RvcnByb2ZpbGUvcHVibGljL2RvY3RvcnNjaGVkdWxlL2NyZWF0ZVNjaGVkdWxlLzMiO31zOjY6Il9mbGFzaCI7YToyOntzOjM6Im9sZCI7YTowOnt9czozOiJuZXciO2E6MDp7fX19', 1751736848),
+('G0DilchGm8cd8xltWX8D5OmLBVBp1LfNmbIc0pLt', NULL, '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/137.0.0.0 Safari/537.36', 'YTozOntzOjY6Il90b2tlbiI7czo0MDoiQUJNZGlUSVZPeVhuNWQxcENLcTJnWVM2c2hwc2pMSW51TTlpeE5wVSI7czo5OiJfcHJldmlvdXMiO2E6MTp7czozOiJ1cmwiO3M6Nzk6Imh0dHA6Ly8xMjcuMC4wLjE6ODA4Mi9hbmlzL2RvY3RvcnByb2ZpbGUvcHVibGljL2RvY3RvcnNjaGVkdWxlL2NyZWF0ZVNjaGVkdWxlLzEiO31zOjY6Il9mbGFzaCI7YToyOntzOjM6Im9sZCI7YTowOnt9czozOiJuZXciO2E6MDp7fX19', 1751569023),
+('OzXhLFU1wfs5DKj8Hn3DbQpVhWQbFDGgmZXXK9Ny', NULL, '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/137.0.0.0 Safari/537.36', 'YTozOntzOjY6Il90b2tlbiI7czo0MDoiYm0xdVBBMzRFa3BzcFFsQ0V3UTR2Z29zcTY2a1hxWlNJUnNqRFk5WSI7czo5OiJfcHJldmlvdXMiO2E6MTp7czozOiJ1cmwiO3M6OTQ6Imh0dHA6Ly8xMjcuMC4wLjE6ODA4Mi9hbmlzL2RvY3RvcnByb2ZpbGUvcHVibGljL2RvY3Rvcj9kZXBhcnRtZW50X2lkPSZkb2N0b3JuYW1lPSZob3NwaXRhbF9pZD0iO31zOjY6Il9mbGFzaCI7YToyOntzOjM6Im9sZCI7YTowOnt9czozOiJuZXciO2E6MDp7fX19', 1751742045),
+('yjannQdgxg9HDB6NrzfspCpO4HUum2r1tJzgiBio', NULL, '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/137.0.0.0 Safari/537.36', 'YTozOntzOjY6Il90b2tlbiI7czo0MDoiaDVRTkRwOTdEZDhNMnd6WXBYdGc0NlVYV1RlcjJzSDF5ZkY1ZmQ4cSI7czo5OiJfcHJldmlvdXMiO2E6MTp7czozOiJ1cmwiO3M6Nzc6Imh0dHA6Ly8xMjcuMC4wLjE6ODA4Mi9hbmlzL2RvY3RvcnByb2ZpbGUvcHVibGljL2RvY3RvcnNjaGVkdWxlL2VpZHRTY2hlZHVsZS8xIjt9czo2OiJfZmxhc2giO2E6Mjp7czozOiJvbGQiO2E6MDp7fXM6MzoibmV3IjthOjA6e319fQ==', 1751724170);
 
 -- --------------------------------------------------------
 
@@ -428,7 +430,7 @@ ALTER TABLE `doctor_schedules`
 -- AUTO_INCREMENT for table `doctor_weekly_schedules`
 --
 ALTER TABLE `doctor_weekly_schedules`
-  MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+  MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 
 --
 -- AUTO_INCREMENT for table `failed_jobs`

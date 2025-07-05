@@ -8,6 +8,32 @@
     {{ session('success') }}
 </div>
 @endif
+<form action="">
+    <div class="form-group">
+        <label for="search">Input Doctor Name</label>
+        <input type="text" name="doctorname" id="doctorname" class="form-control" placeholder="Enter Doctor Name" value="{{ request('doctorname') }}">
+    </div>
+    <div class="form-group">
+        <label for="search">Select Department</label>
+        <select name="department_id" id="department_id" class="form-control">
+            <option value="">All Departments</option>
+            @foreach($departments as $department)
+            <option value="{{ $department->id }}" {{ request('department_id') == $department->id ? 'selected' : '' }}>{{ $department->department_name }}</option>
+            @endforeach
+        </select>
+    </div>
+    <div class="form-group">
+        <label for="search">Select Hospitals</label>
+        <select name="hospital_id" id="hospital_id" class="form-control">
+            <option value="">All Departments</option>
+            @foreach($hospitals as $hospital)
+            <option value="{{ $hospital->id }}" {{ request('hospital_id') == $hospital->id ? 'selected' : '' }}>{{ $hospital->name }}</option>
+            @endforeach
+        </select>
+    </div>
+        
+    <button type="submit" class="btn btn-primary">Search</button>
+</form>
 <table class="table table-bordered">
     <thead>
         <tr>
@@ -26,8 +52,9 @@
             <td>{{ $doctor->email }}</td>
             <td>{{ $doctor->department ? $doctor->department->department_name : 'N/A' }}</td>
             <td>
-                <a href="{{ route('doctor.edit', $doctor->id) }}" class="btn btn-warning">Edit</a>
-                <a href="{{ route('doctorschedule.createSchedule', $doctor->id) }}" class="btn btn-warning">Make Schedule</a>
+                <a href="{{ route('doctor.edit', $doctor->id) }}" class="btn btn-warning">Edit</a>  ||  
+                <a href="{{ route('doctorschedule.createSchedule', $doctor->id) }}" class="btn btn-warning">Make Schedule</a>  ||  
+                <a href="{{ route('doctorschedule.editSchedule', $doctor->id) }}" class="btn btn-warning">Edit Schedule</a>  ||  
                 <form action="{{ route('doctor.destroy', $doctor->id) }}" method="POST" style="display:inline;">
                     @csrf
                     @method('DELETE')
@@ -37,3 +64,6 @@
         </tr>
         @endforeach
     </tbody>
+</table>
+
+@endsection

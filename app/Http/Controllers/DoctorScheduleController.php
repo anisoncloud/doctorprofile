@@ -42,7 +42,7 @@ class DoctorScheduleController extends Controller
         //dd($request->all(), $doctorId);
         $doctor = Doctor::findOrFail($doctorId);
 
-    $days = ['Monday','Tuesday','Wednesday','Thursday','Friday','Saturday','Sunday'];
+    $days = ['Saturday','Sunday', 'Monday','Tuesday','Wednesday','Thursday','Friday'];
 
     foreach ($days as $day) {
         if ($request->start_time[$day] && $request->end_time[$day]) {
@@ -58,9 +58,56 @@ class DoctorScheduleController extends Controller
     return back()->with('success', 'Weekly schedule updated.');
     }
 
+    public function editSchedule($doctorId)
+    {
+        $doctor = Doctor::with('weeklySchedules')->findOrFail($doctorId);
+        //dd($doctor);
+        $days = ['Saturday', 'Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday'];
+        $schedule=[];
+        foreach($days as $day){
+            $daySchedule = $doctor->weeklySchedules->where('day_of_week', $day)->first();
+            $schedule[$day] = [
+                'start_time' => $daySchedule ? $daySchedule->start_time : null,
+                'end_time' => $daySchedule ? $daySchedule->end_time : null
+            ];
+        }
+        // if ($schedule->isEmpty()) {
+        //     return redirect()->back()->with('error', 'No schedule found for this doctor.');
+        // }
+
+        return view('back.doctorschedule.edit', compact('doctor', 'schedule'));
+    }
+
+
+    
     /**
      * Display the specified resource.
      */
+    public function updateSchedule(Request $request, $doctorId)
+    {
+    $doctor = Doctor::findOrFail($doctorId);
+    $days = ['Monday','Tuesday','Wednesday','Thursday','Friday','Saturday','Sunday'];
+
+    foreach ($days as $day) {
+        $start = $request->start_time[$day] ?? null;
+        $end = $request->end_time[$day] ?? null;
+
+        if ($start && $end) {
+            DoctorWeeklySchedule::updateOrCreate(
+                ['doctor_id' => $doctor->id, 'day_of_week' => $day],
+                ['start_time' => $start, 'end_time' => $end]
+            );
+        } else {
+            // If inputs are empty, delete that day's schedule
+            DoctorWeeklySchedule::where('doctor_id', $doctor->id)
+                ->where('day_of_week', $day)
+                ->delete();
+        }
+    }
+
+    return back()->with('success', 'Schedule updated successfully.');
+    }
+
     public function show(string $id)
     {
         //

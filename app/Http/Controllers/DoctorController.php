@@ -17,6 +17,8 @@ class DoctorController extends Controller
         //
         return view('back.doctor.index', [
             'doctors' => Doctor::with('department')->get(),
+            'departments' => Department::all(),
+            'hospitals' => Hospital::all(),
         ]);
     }
 
